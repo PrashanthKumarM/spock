@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
 
-	# require 'twilio-ruby'
+	require 'twilio-ruby'
 	before_filter :require_user
 	before_filter :build_user, :only => [ :index, :new, :show, :create ]
 
