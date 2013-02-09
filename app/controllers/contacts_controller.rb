@@ -1,6 +1,9 @@
 class ContactsController < ApplicationController
+
+	before_filter :require_user
+	
   def new
-  	@contact = Contact.new
+  	@contact = current_user.contacts.new 
   end
 
   def edit
@@ -8,16 +11,17 @@ class ContactsController < ApplicationController
   end
 
   def create
-  	@contact = Contact.new(params[:contact])
+  	@contact = current_user.contacts.new(params[:contact])#.merge(:user_id => current_user.id))
   	if @contact.save
   		redirect_to contacts_path
   	else
-  		redirect_to edit_contact_path @contact.id
+      p @contact.errors
+  		redirect_to new_contact_path
   	end
   end
 
   def update
-  	@contact = Contact.find params[:id]
+  	@contact = current_user.contacts.find params[:id]
   	@contact.update_attributes params[:contact]
   	if @contact.save
   		redirect_to contacts_path
