@@ -6,6 +6,10 @@ class ContactsController < ApplicationController
   	@contact = current_user.contacts.new 
   end
 
+  def index
+    @contacts = current_user.contacts.all
+  end
+
   def edit
   	@contact = Contact.find params[:id]
   end
