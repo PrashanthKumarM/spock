@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209082827) do
+ActiveRecord::Schema.define(:version => 20130209084908) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,45 @@ ActiveRecord::Schema.define(:version => 20130209082827) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "survey_breakpoint_results", :force => true do |t|
+    t.integer  "result"
+    t.string   "value"
+    t.integer  "survey_id"
+    t.integer  "survey_result_id"
+    t.integer  "survey_breakpoint_id"
+    t.integer  "contact_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_breakpoints", :force => true do |t|
+    t.string   "twiml"
+    t.integer  "survey_id"
+    t.integer  "next_survey_breakpoint_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_results", :force => true do |t|
+    t.integer  "status"
+    t.integer  "total_breakpoints"
+    t.integer  "survey_id"
+    t.integer  "contact_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.integer  "user_id"
+    t.boolean  "voice?"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                             :null => false

@@ -29,7 +29,8 @@ class SurveysController < ApplicationController
 	private
 
 	def build_user
-		@user = current_user
+		@user = current_user if params[:id].nil?
+		@user = User.find(params[:id]) if @user.nil?
 	end
 
 end

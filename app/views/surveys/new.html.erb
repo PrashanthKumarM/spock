@@ -1,3 +1,24 @@
+<div class="hide">
+	<div class="question_box">
+		<h3><b>Question</b></h3>
+		<%= text_area_tag('qa', '', :size => '40x4', :class => 'question_twiml') %>
+		<h3><b>Answers</b></h3>
+		<div class="row-fluid">
+			<div class="entry">
+				<div class="span2">
+					<h4><b>Key</b></h4>
+				</div>
+				<div class="span7">
+					<h4><b>Play Message</b></h4>
+				</div>
+				<div class="span3">
+					<h4><b>Conditional Jump-to</b></h4>
+				</div>
+			</div>
+		</div>
+		<a id="another"><b>[</b>+<b>]</b>Add another option</a>
+	</div>
+</div>
 <% javascript_tag do %>
 
 function options_select(){
@@ -10,27 +31,36 @@ return string;
 }
 
 function question_select(){
-var i=0;
+var i=1;
 var string="<option value='0'>0</option>";
-	while(i<jQuery('.question_box').length())
+	while(i<(jQuery('.question_box').length-1))
 	{
-		string += "option value="+i+"</option>";
+		string += "<option value="+i+">"+i+"</option>";
+		i++;
 	}
 return string;
 }
 
-jQuery('#another').bind('click', function(){
-	var number = jQuery(this).parent().children('.entry').length().to_s;
-	var ques = jQuery('.question_box').length();
+jQuery('#another').live('click', function(){
+	console.log('event caught');
+	var number = jQuery(this).parent().find('.entry').length-1;
+	var ques = jQuery('.question_box').length;
 	var input_number = "inputs["+number+"][input_number]";
 	var input_text = "inputs["+number+"][input_text]";
 	var input_jump = "inputs["+number+"][input_jump]";
-	var entry = jQuery('.entry').clone();
-	entry.children('.span2').innerHTML("<span class='remove'></span>Press<select id="+input_number+" name="+input_number+">"+options_select()+"</select>" );
-	entry.children('.span7').innerHTML("<input type='text' name="+input_text+" />");
-	entry.children('.span3').innerHTML("jump to <select name="+input_jump">"+">"+question_select()+"</select>");
+	var entry = jQuery('.entry').first().clone();
+	entry.children('.span2').html("<span class='remove'></span><select id="+input_number+" name="+input_number+">"+options_select()+"</select>" );
+	entry.children('.span7').html("<input type='text' name="+input_text+" />");
+	entry.children('.span3').html("jump to <select name="+input_jump+">"+question_select()+"</select>");
 	jQuery(this).prev().append(entry);
-})
+});
+
+jQuery('#another_question').live('click', function(){
+	var name = "inputs["+(jQuery('.question_box').length-1)+"][question]"
+	var question = jQuery('.hide').children().clone();
+	question.find('#qa').attr('name', name).attr('id', name);
+	jQuery(this).prev().append(question);
+});
 
 jQuery('.remove').live('click', function(){
 	jQuery(this).parent().parent().remove();
@@ -38,29 +68,34 @@ jQuery('.remove').live('click', function(){
 
 <% end %>
 <h1>Survey</h1>
-<%= form_for @survey :html => {:class=>'form-horizontal'} do |s| %>
+<% form_for @survey, :html => {:class=>'form-horizontal'} do |s| %>
 	<div class="control-group">
 		<%= s.label :name, "Survey Name", :class=>"control-label" %>
 		<div class="controls">
-			<%= s.text_field :name, :placeholder => "enter text...",  %>
+			<%= s.text_field :name, :placeholder => "enter text...",  :class => "input-xxlarge" %>
 		</div>
 	</div>
+	<div id = "full_questions">
 	<div class="question_box">
-		<h2><b>Question</b></h2>
-		<%= text_field twiml[], :class => "input-xxlarge" %>
-		<h2><b>Answers</b></h2>
+		<h3><b>Question</b></h3>
+		<%= text_area_tag('inputs[0][question]', '', :size => '40x4', :class => 'question_twiml') %>
+		<h3><b>Answers</b></h3>
 		<div class="row-fluid">
 			<div class="entry">
 				<div class="span2">
-					<h3><b>Key</b></h3>
+					<h4 class="key"><b>Key</b></h4>
 				</div>
 				<div class="span7">
-					<h3><b>Play Message</b></h3>
+					<h4><b>Play Message</b></h4>
 				</div>
 				<div class="span3">
-					<h3><b>Conditional Jump-to</b></h3>
+					<h4><b>Conditional Jump-to</b></h4>
 				</div>
 			</div>
 		</div>
 			<a id="another"><b>[</b>+<b>]</b>Add another option</a>
 	</div>
+</div>
+	<a id="another_question">Add a Question</a>
+	<%= s.submit "Create" %>
+	<% end %>
