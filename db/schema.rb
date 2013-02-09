@@ -43,10 +43,7 @@ ActiveRecord::Schema.define(:version => 20130209084908) do
     t.string   "value"
     t.integer  "survey_id"
     t.integer  "survey_result_id"
-<<<<<<< HEAD
     t.integer  "survey_breakpoint_id"
-=======
->>>>>>> b6e64f4683f3faebc973ecc2aab80ba41c8aa92f
     t.integer  "contact_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -56,12 +53,9 @@ ActiveRecord::Schema.define(:version => 20130209084908) do
   create_table "survey_breakpoints", :force => true do |t|
     t.string   "twiml"
     t.integer  "survey_id"
-<<<<<<< HEAD
-    t.integer  "next_survey_breakpoint_id"
-=======
->>>>>>> b6e64f4683f3faebc973ecc2aab80ba41c8aa92f
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "next_survey_breakpoint_id"
   end
 
   create_table "survey_results", :force => true do |t|
@@ -78,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20130209084908) do
     t.string   "name"
     t.string   "desc"
     t.integer  "user_id"
-    t.boolean  "voice?"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.binary   "voice",      :limit => 1
   end
 
   create_table "users", :force => true do |t|

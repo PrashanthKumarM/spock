@@ -13,7 +13,8 @@ class SurveysController < ApplicationController
 	end
 
 	def create
-		@survey = @user.survey.new(params[:survey])
+		p params
+		@survey = @user.surveys.new(params[:survey])
 		params[:survey][:survey_breakpoints].each do |sb|
 			@survey.survey_breakpoints.new (sb)
 		end
