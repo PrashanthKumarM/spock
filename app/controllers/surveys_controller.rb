@@ -13,9 +13,10 @@ class SurveysController < ApplicationController
 
 	def create
 		@survey = @user.survey.new(params[:survey])
-		params[:survey_body].each do |sb|
-			
+		params[:survey][:survey_breakpoints].each do |sb|
+			@survey.survey_breakpoints.new (sb)
 		end
+		@survey.save
 	end
 
 	def show
@@ -24,8 +25,8 @@ class SurveysController < ApplicationController
 
 	private
 
-	def build_user
-		@user = User.find(params[:id])
-	end
+		def build_user
+			@user = User.find(params[:id])
+		end
 
 end
