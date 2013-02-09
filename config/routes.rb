@@ -44,7 +44,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :user_session
   map.resources :contacts
-  
+  map.resources :surveys
+  # map.connect '/survey/:id/:survey_name', :controller => 'surveys', :action => 'show'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 
