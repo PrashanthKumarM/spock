@@ -62,3 +62,15 @@ div.span7 input[type="text"]{
 .key{
 	margin-left: 25px;
 }
+
+.no-surveys{
+	height: 100px;
+	width: 100%;
+	color: #666;
+	font-size: 25px;
+	text-align: center;
+	border: 1px solid #666;
+	border-radius: 5px;
+	padding-top: 75px;
+	background-color: rgb(247, 247, 247);
+}

@@ -44,10 +44,10 @@ return string;
 jQuery('#another').live('click', function(){
 	console.log('event caught');
 	var number = jQuery(this).parent().find('.entry').length-1;
-	var ques = jQuery('.question_box').length;
-	var input_number = "inputs["+number+"][input_number]";
-	var input_text = "inputs["+number+"][input_text]";
-	var input_jump = "inputs["+number+"][input_jump]";
+	var ques = jQuery(this).parent().find('textarea').data('q');
+	var input_number = "inputs["+ques+"][options]["+number+"][input_number]";
+	var input_text = "inputs["+ques+"][options]["+number+"][input_text]";
+	var input_jump = "inputs["+ques+"][options]["+number+"][input_jump]";
 	var entry = jQuery('.entry').first().clone();
 	entry.children('.span2').html("<span class='remove'></span><select id="+input_number+" name="+input_number+">"+options_select()+"</select>" );
 	entry.children('.span7').html("<input type='text' name="+input_text+" />");
@@ -58,7 +58,7 @@ jQuery('#another').live('click', function(){
 jQuery('#another_question').live('click', function(){
 	var name = "inputs["+(jQuery('.question_box').length-1)+"][question]"
 	var question = jQuery('.hide').children().clone();
-	question.find('#qa').attr('name', name).attr('id', name);
+	question.find('#qa').attr('name', name).attr('id', name).attr('data-q', (jQuery('.question_box').length-1));
 	jQuery(this).prev().append(question);
 });
 
@@ -78,7 +78,7 @@ jQuery('.remove').live('click', function(){
 	<div id = "full_questions">
 	<div class="question_box">
 		<h3><b>Question</b></h3>
-		<%= text_area_tag('inputs[0][question]', '', :size => '40x4', :class => 'question_twiml') %>
+		<%= text_area_tag('inputs[0][question]', '', :size => '40x4', :class => 'question_twiml', "data-q" => "0") %>
 		<h3><b>Answers</b></h3>
 		<div class="row-fluid">
 			<div class="entry">
