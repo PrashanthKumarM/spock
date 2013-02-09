@@ -71,8 +71,10 @@ class SurveysController < ApplicationController
 		end
 
 		def parse_xml question, options
-			options.each do |k, v|
-				question<<". #{v[:input_text]}"
+			if !options.nil?
+				options.each do |k, v|
+					question<<". #{v[:input_text]}"
+				end
 			end
 			question
 		end
