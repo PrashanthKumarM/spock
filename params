@@ -1,0 +1,22 @@
+{
+"survey"=>{"name"=>"Hari"}, 
+
+"inputs"=>{
+
+"0"=>{"options"=>{"0"=>{"input_jump"=>"1", "input_number"=>"1", "input_text"=>"Option1 Q1"}, "1"=>{"input_jump"=>"2", "input_number"=>"2", "input_text"=>"Option2 Q1"}}, 
+"question"=>"Q1"}, 
+
+"1"=>{
+"options"=>{"0"=>{"input_jump"=>"0", "input_number"=>"4", "input_text"=>"Option1 Q2"}}, 
+"question"=>"Q2"
+},
+
+"2"=>{"options"=>{"0"=>{"input_jump"=>"2", "input_number"=>"7", "input_text"=>"Option1 Q3"}}, 
+"question"=>"Q3"}, 
+
+"3"=>{"options"=>{"0"=>{"input_jump"=>"1", "input_number"=>"8", "input_text"=>"Option1 Q4"}, "1"=>{"input_jump"=>"2", "input_number"=>"9", "input_text"=>"Option2 Q4"}}, 
+"question"=>"Q4"},
+
+},
+
+"action"=>"create", "controller"=>"surveys"}

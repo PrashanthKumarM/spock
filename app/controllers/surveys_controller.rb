@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
 
 	# require 'twilio-ruby'
 	before_filter :require_user
-	before_filter :build_user, :only => [ :index, :new, :show ]
+	before_filter :build_user, :only => [ :index, :new, :show, :create ]
 
 	def index
 		@surveys = @user.surveys
@@ -13,12 +13,19 @@ class SurveysController < ApplicationController
 	end
 
 	def create
-		p params
-		@survey = @user.surveys.new(params[:survey])
-		params[:survey][:survey_breakpoints].each do |sb|
-			@survey.survey_breakpoints.new (sb)
+		@survey = @user.surveys.create(params[:survey])
+		@prev = nil
+		
+		params[:inputs].length.times.each do |count|
+			count = count.to_s
+			@twiml = parse_xml params[:inputs][count][:question], params[:inputs][count][:options]
+			sb = @survey.survey_breakpoints.create :twiml => @twiml
+			sb.previous_survey_breakpoint = @prev unless @prev.nil?
+			@prev = sb
 		end
 		@survey.save
+		redirect_to surveys_path
+		# refactor_workflow
 	end
 
 	def show
@@ -35,13 +42,6 @@ class SurveysController < ApplicationController
 
 		initiate_survey_variables
 		save_survey_result
-
-		p "SurveyResult"
-		p @survey_result
-		
-		# p "#{@survey_result.id}"
-		# p "PEEKAY the mass"
-		# p  "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
 		make_the_call
 	end
 	
@@ -70,8 +70,18 @@ class SurveysController < ApplicationController
   		})
 		end
 
+		def parse_xml question, options
+			options.each do |k, v|
+				question<<". #{v[:input_text]}"
+			end
+			question
+		end
+
+		def refactor_workflow
+
+		end
+
 		def build_user
-			@user = current_user if params[:id].nil?
-			@user = User.find(params[:id]) if @user.nil?
+			@user = current_user
 		end
 end
