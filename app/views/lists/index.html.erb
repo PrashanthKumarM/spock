@@ -1,0 +1,11 @@
+<% if @lists.empty? %>
+<%= content_tag(:h2, "No lists") %>
+<% end %>
+<% @lists.each do |list| %>
+<div class="list">
+	<%= content_tag(:p, list.name, :class => "h1") %>
+	<%= content_tag(:p, "number of contacts") %>
+	<%= content_tag(:p, list.contacts.count ) %>
+	<%= link_to "Delete", list_path(list.id), :method => :delete, :confirm => 'Are you sure you want to delete the list?' %>
+</div>
+<% end %>

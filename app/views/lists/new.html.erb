@@ -1,0 +1,12 @@
+<% form_for @list do |l| %>
+<%= l.label :name %>
+<%= l.text_field :name %>
+<%= l.hidden_field :user_id, :value => current_user.id %>
+<% @contacts.each do |contact| %>
+<div class="contact_list">
+	<%= check_box_tag ('ids[]', contact.id) %>
+	<%= content_tag(:p, contact.name) %>
+</div>
+<% end %>
+<%= l.submit "Create" %>
+<% end %>

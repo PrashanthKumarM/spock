@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(:version => 20130209084908) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "list_id"
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
