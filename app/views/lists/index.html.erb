@@ -1,11 +1,13 @@
-<% if @lists.empty? %>
-<%= content_tag(:h2, "No lists") %>
-<% end %>
-<% @lists.each do |list| %>
-<div class="list">
-	<%= content_tag(:p, list.name, :class => "h1") %>
-	<%= content_tag(:p, "number of contacts") %>
-	<%= content_tag(:p, list.contacts.count ) %>
-	<%= link_to "Delete", list_path(list.id), :method => :delete, :confirm => 'Are you sure you want to delete the list?' %>
-</div>
-<% end %>
+<h2>Your Lists</h2>
+
+<table class="table table-striped">
+	<tr><th>#</th><th>List Name</th><th>Contacts</th><th></th></tr>
+	<% @lists.each do |list| %>
+	<tr><td><%= list.id %></td><td><%= list.name %></td><td><%= list.contacts.count %></td>
+		<td><%= link_to "Delete", list_path(list.id), :method => :delete, :confirm => 'Are you sure you want to delete the list?' %></td></tr>
+	<% end %>
+</table>
+
+	<% if @lists.empty? %>
+	<div class="no-surveys"> You do not have any lists </div>
+	<% end %>
