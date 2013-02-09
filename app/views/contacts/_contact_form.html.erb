@@ -1,0 +1,14 @@
+<ul class="ui-form">	
+	<li>
+		<%= label(:contact, :name, "Name" )%>
+		<%= text_field(:contact, :name, :class => "text required" ) %>
+	</li>
+	<li>
+		<%= label(:contact, :phone, "Phone") %> 
+		<%= text_field(:contact, :phone, :id => "email_primary" ) %> 
+	</li>	
+	<li>
+		<%= label(:contact, :email, "Email") %> 
+		<%= text_field(:contact, :email, :id => "email_primary" ) %> 
+	</li>	
+</ul>

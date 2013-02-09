@@ -1,7 +1,5 @@
 source :rubygems
 
-gem 'heroku'
-gem 'sinatra'
 gem 'thin'
 gem 'twilio-ruby'
 gem "authlogic", "2.1.6"
