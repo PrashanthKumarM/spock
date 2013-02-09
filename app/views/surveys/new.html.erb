@@ -1,0 +1,66 @@
+<% javascript_tag do %>
+
+function options_select(){
+var string = "<option value='0'>0</option>"
+	for(i=1;i<=9;i++)
+	{
+		string += "<option value="+i+">"+i+"</option>";
+	}
+return string;
+}
+
+function question_select(){
+var i=0;
+var string="<option value='0'>0</option>";
+	while(i<jQuery('.question_box').length())
+	{
+		string += "option value="+i+"</option>";
+	}
+return string;
+}
+
+jQuery('#another').bind('click', function(){
+	var number = jQuery(this).parent().children('.entry').length().to_s;
+	var ques = jQuery('.question_box').length();
+	var input_number = "inputs["+number+"][input_number]";
+	var input_text = "inputs["+number+"][input_text]";
+	var input_jump = "inputs["+number+"][input_jump]";
+	var entry = jQuery('.entry').clone();
+	entry.children('.span2').innerHTML("<span class='remove'></span>Press<select id="+input_number+" name="+input_number+">"+options_select()+"</select>" );
+	entry.children('.span7').innerHTML("<input type='text' name="+input_text+" />");
+	entry.children('.span3').innerHTML("jump to <select name="+input_jump">"+">"+question_select()+"</select>");
+	jQuery(this).prev().append(entry);
+})
+
+jQuery('.remove').live('click', function(){
+	jQuery(this).parent().parent().remove();
+});
+
+<% end %>
+<h1>Survey</h1>
+<%= form_for @survey :html => {:class=>'form-horizontal'} do |s| %>
+	<div class="control-group">
+		<%= s.label :name, "Survey Name", :class=>"control-label" %>
+		<div class="controls">
+			<%= s.text_field :name, :placeholder => "enter text...",  %>
+		</div>
+	</div>
+	<div class="question_box">
+		<h2><b>Question</b></h2>
+		<%= text_field twiml[], :class => "input-xxlarge" %>
+		<h2><b>Answers</b></h2>
+		<div class="row-fluid">
+			<div class="entry">
+				<div class="span2">
+					<h3><b>Key</b></h3>
+				</div>
+				<div class="span7">
+					<h3><b>Play Message</b></h3>
+				</div>
+				<div class="span3">
+					<h3><b>Conditional Jump-to</b></h3>
+				</div>
+			</div>
+		</div>
+			<a id="another"><b>[</b>+<b>]</b>Add another option</a>
+	</div>

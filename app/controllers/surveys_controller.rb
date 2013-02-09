@@ -8,7 +8,7 @@ class SurveysController < ApplicationController
 	end
 
 	def new
-		@survey = @user.survey.new
+		@survey = @user.surveys.new
 	end
 
 	def create
@@ -25,11 +25,11 @@ class SurveysController < ApplicationController
 	def initiate_survey
 		@list = User.find(:all, :conditions => { :list_number => params[:list_number]})
 	end
-	
+
 	private
 
 	def build_user
-		@user = User.find(params[:id])
+		@user = current_user
 	end
 
 end
