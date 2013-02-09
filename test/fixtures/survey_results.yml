@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status: 1
+  total_breakpoints: 1
+  survey_id: 1
+  contact_id: 1
+  user_id: 1
+
+two:
+  status: 1
+  total_breakpoints: 1
+  survey_id: 1
+  contact_id: 1
+  user_id: 1
