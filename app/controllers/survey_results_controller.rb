@@ -1,4 +1,0 @@
-class SurveysResultsController < ApplicationController
-
-
-end
