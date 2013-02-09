@@ -53,7 +53,7 @@ class SurveysController < ApplicationController
 		end
 
 		def save_survey_result
-			@survey_result = @survey.survey_results.new ({:contact_id => @contact.id, :user_id => current_user.id})
+			@survey_result = @survey.survey_results.new({:contact_id => @contact.id, :user_id => current_user.id})
 			@survey_result.save
 		end
 
