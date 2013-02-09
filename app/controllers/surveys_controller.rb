@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
 	def create
 		@survey = @user.survey.new(params[:survey])
 		params[:survey_body].each do |sb|
-			
+
 		end
 	end
 
@@ -22,6 +22,10 @@ class SurveysController < ApplicationController
 		@survey = @user.surveys.find_by_name(params[:survey_name])
 	end
 
+	def initiate_survey
+		@list = User.find(:all, :conditions => { :list_number => params[:list_number]})
+	end
+	
 	private
 
 	def build_user

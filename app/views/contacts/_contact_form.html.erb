@@ -6,6 +6,7 @@
 	<li>
 		<%= label(:contact, :phone, "Phone") %> 
 		<%= text_field(:contact, :phone, :id => "email_primary" ) %> 
+		<%= hidden_field(:contact, :user_id, :value => current_user.id) %>
 	</li>	
 	<li>
 		<%= label(:contact, :email, "Email") %> 
