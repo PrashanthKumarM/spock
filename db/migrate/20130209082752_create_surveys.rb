@@ -4,6 +4,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :name
       t.string :desc
       t.integer :user_id
+      t.boolean :voice?
 
       t.timestamps
     end

@@ -45,7 +45,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resources :lists
   map.resources :contacts
-  map.resources :surveys
+
+  map.resources :surveys, :member => {:initiate => :get}
+  map.resources :survey_results
+
+  map.resources :survey_breakpoints, :collection => {:handle => :get}
+  map.resources :survey_breakpoint_results
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
