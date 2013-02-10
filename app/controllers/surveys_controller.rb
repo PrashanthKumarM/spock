@@ -62,11 +62,13 @@ class SurveysController < ApplicationController
 			auth_token = '1561a5d67c1c765ccbc0b5a76fc310e3'
 			first_survey_breakpoint = @survey.survey_breakpoints.first
 
+
 			@client = Twilio::REST::Client.new account_sid, auth_token
 			@call = @client.account.calls.create ({
 	  	:from => '+1 567-623-8300',
 	  	:to => @contact.phone,
 	  	:url => "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
+	  	# :url => "http://ec2-23-23-179-188.compute-1.amazonaws.com/survey_breakpoints/handle?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
   		})
   		# p @call
 		end

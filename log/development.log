@@ -19039,3 +19039,250 @@ Processing SurveyBreakpointsController#handle (for 127.0.0.1 at 2013-02-10 08:08
   [4;36;1mSurveyBreakpoint Load (0.3ms)[0m   [0;1mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.`id` = 8 AND (`survey_breakpoints`.survey_id = 15)) ORDER BY created_at[0m
   [4;35;1mSurveyBreakpoint Load (0.2ms)[0m   [0mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.`id` = 9) [0m
 Completed in 212ms (View: 1, DB: 111) | 200 OK [http://localhost/survey_breakpoints/handle?current_survey=15&current_survey_result=33&current_survey_breakpoint=8]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:13:00) [GET]
+  Parameters: {"id"=>"1", "controller"=>"surveys", "action"=>"initiate"}
+  [4;36;1mUser Columns (57.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `last_request_at` = '2013-02-10 02:43:00', `updated_at` = '2013-02-10 02:43:00' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurvey Columns (3.9ms)[0m   [0mSHOW FIELDS FROM `surveys`[0m
+  [4;36;1mSurvey Load (0.2ms)[0m   [0;1mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 1 AND (`surveys`.user_id = 1)) [0m
+  [4;35;1mContact Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mContact Load (0.3ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;35;1mSurveyResult Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `survey_results`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSurveyResult Create (0.3ms)[0m   [0mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(1, NULL, NULL, 21, 1, '2013-02-10 02:43:00', '2013-02-10 02:43:00')[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurveyBreakpoint Load (0.3ms)[0m   [0mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.survey_id = 1) ORDER BY created_at LIMIT 1[0m
+  [4;36;1mSurveyBreakpoint Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `survey_breakpoints`[0m
+
+Twilio::REST::RequestError (Url is not a valid url: http://localhost:3000/survey_breakpoints/handle?current_survey=1&current_survey_result=34&current_survey_breakpoint=1):
+  /Users/hariharanganapathiraman/.rvm/gems/ruby-1.8.7-p371/gems/twilio-ruby-3.9.0/lib/twilio-ruby/rest/client.rb:226:in `connect_and_send'
+  /Users/hariharanganapathiraman/.rvm/gems/ruby-1.8.7-p371/gems/twilio-ruby-3.9.0/lib/twilio-ruby/rest/client.rb:165:in `post'
+  /Users/hariharanganapathiraman/.rvm/gems/ruby-1.8.7-p371/gems/twilio-ruby-3.9.0/lib/twilio-ruby/rest/list_resource.rb:82:in `create'
+  app/controllers/surveys_controller.rb:66:in `make_the_call'
+  app/controllers/surveys_controller.rb:45:in `initiate'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.7ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:28:57) [GET]
+  Parameters: {"id"=>"6", "controller"=>"surveys", "action"=>"initiate"}
+  [4;35;1mUser Columns (54.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE `users` SET `last_request_at` = '2013-02-10 02:58:57', `updated_at` = '2013-02-10 02:58:57' WHERE `id` = 1[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSurvey Columns (3.7ms)[0m   [0;1mSHOW FIELDS FROM `surveys`[0m
+  [4;35;1mSurvey Load (0.3ms)[0m   [0mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 6 AND (`surveys`.user_id = 1)) [0m
+  [4;36;1mContact Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mContact Load (0.3ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;36;1mSurveyResult Columns (2.8ms)[0m   [0;1mSHOW FIELDS FROM `survey_results`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSurveyResult Create (0.3ms)[0m   [0;1mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(6, NULL, NULL, 21, 1, '2013-02-10 02:58:57', '2013-02-10 02:58:57')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSurveyBreakpoint Load (0.3ms)[0m   [0;1mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.survey_id = 6) ORDER BY created_at LIMIT 1[0m
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/surveys_controller.rb:70:in `make_the_call'
+  app/controllers/surveys_controller.rb:45:in `initiate'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (25.3ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:29:31) [GET]
+  Parameters: {"id"=>"6", "controller"=>"surveys", "action"=>"initiate"}
+  [4;35;1mUser Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE `users` SET `last_request_at` = '2013-02-10 02:59:31', `updated_at` = '2013-02-10 02:59:31' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSurvey Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `surveys`[0m
+  [4;35;1mSurvey Load (0.2ms)[0m   [0mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 6 AND (`surveys`.user_id = 1)) [0m
+  [4;36;1mContact Columns (3.8ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;36;1mSurveyResult Columns (3.0ms)[0m   [0;1mSHOW FIELDS FROM `survey_results`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSurveyResult Create (0.2ms)[0m   [0;1mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(6, NULL, NULL, 21, 1, '2013-02-10 02:59:31', '2013-02-10 02:59:31')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSurveyBreakpoint Load (0.4ms)[0m   [0;1mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.survey_id = 6) ORDER BY created_at LIMIT 1[0m
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/surveys_controller.rb:65:in `make_the_call'
+  app/controllers/surveys_controller.rb:45:in `initiate'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (25.1ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:29:52) [GET]
+  Parameters: {"id"=>"6", "controller"=>"surveys", "action"=>"initiate"}
+  [4;35;1mUser Columns (50.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE `users` SET `last_request_at` = '2013-02-10 02:59:53', `updated_at` = '2013-02-10 02:59:53' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSurvey Columns (3.3ms)[0m   [0;1mSHOW FIELDS FROM `surveys`[0m
+  [4;35;1mSurvey Load (0.4ms)[0m   [0mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 6 AND (`surveys`.user_id = 1)) [0m
+  [4;36;1mContact Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;36;1mSurveyResult Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `survey_results`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSurveyResult Create (0.3ms)[0m   [0;1mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(6, NULL, NULL, 21, 1, '2013-02-10 02:59:53', '2013-02-10 02:59:53')[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCOMMIT[0m
+
+NameError (undefined local variable or method `first_survey_breakpoint' for #<SurveysController:0x10c110be0>):
+  app/controllers/surveys_controller.rb:61:in `make_the_call'
+  app/controllers/surveys_controller.rb:45:in `initiate'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (25.0ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:30:29) [GET]
+  Parameters: {"id"=>"6", "controller"=>"surveys", "action"=>"initiate"}
+  [4;36;1mUser Columns (19.5ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `last_request_at` = '2013-02-10 03:00:29', `updated_at` = '2013-02-10 03:00:29' WHERE `id` = 1[0m
+  [4;36;1mSQL (35.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurvey Columns (5.4ms)[0m   [0mSHOW FIELDS FROM `surveys`[0m
+  [4;36;1mSurvey Load (0.3ms)[0m   [0;1mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 6 AND (`surveys`.user_id = 1)) [0m
+  [4;35;1mContact Columns (149.1ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mContact Load (0.4ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;35;1mSurveyResult Columns (79.2ms)[0m   [0mSHOW FIELDS FROM `survey_results`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSurveyResult Create (0.3ms)[0m   [0mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(6, NULL, NULL, 21, 1, '2013-02-10 03:00:30', '2013-02-10 03:00:30')[0m
+  [4;36;1mSQL (30.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurveyBreakpoint Load (0.3ms)[0m   [0mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.survey_id = 6) ORDER BY created_at LIMIT 1[0m
+  [4;36;1mSurveyBreakpoint Columns (99.0ms)[0m   [0;1mSHOW FIELDS FROM `survey_breakpoints`[0m
+Rendering template within layouts/application
+Rendering surveys/initiate
+Rendered layouts/_stylesheets (0.3ms)
+Rendered layouts/_javascripts (0.6ms)
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM `users` WHERE (last_request_at > '2013-02-10 02:50:34') [0m
+Completed in 4893ms (View: 8, DB: 421) | 200 OK [http://localhost/surveys/6/initiate]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2013-02-10 08:30:34) [GET]
+
+ActionController::RoutingError (No route matches "/prototype.js" with {:method=>:get}):
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SurveysController#initiate (for 127.0.0.1 at 2013-02-10 08:38:37) [GET]
+  Parameters: {"id"=>"6", "controller"=>"surveys", "action"=>"initiate"}
+  [4;36;1mUser Columns (37.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '1') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE `users` SET `last_request_at` = '2013-02-10 03:08:37', `updated_at` = '2013-02-10 03:08:37' WHERE `id` = 1[0m
+  [4;36;1mSQL (34.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurvey Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `surveys`[0m
+  [4;36;1mSurvey Load (0.3ms)[0m   [0;1mSELECT * FROM `surveys` WHERE (`surveys`.`id` = 6 AND (`surveys`.user_id = 1)) [0m
+  [4;35;1mContact Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mContact Load (0.3ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.`phone` = '+919941751339') AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;35;1mSurveyResult Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `survey_results`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSurveyResult Create (0.3ms)[0m   [0mINSERT INTO `survey_results` (`survey_id`, `status`, `total_breakpoints`, `contact_id`, `user_id`, `created_at`, `updated_at`) VALUES(6, NULL, NULL, 21, 1, '2013-02-10 03:08:37', '2013-02-10 03:08:37')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSurveyBreakpoint Load (0.3ms)[0m   [0mSELECT * FROM `survey_breakpoints` WHERE (`survey_breakpoints`.survey_id = 6) ORDER BY created_at LIMIT 1[0m
+  [4;36;1mSurveyBreakpoint Columns (2.5ms)[0m   [0;1mSHOW FIELDS FROM `survey_breakpoints`[0m
+Rendering template within layouts/application
+Rendering surveys/initiate
+Rendered layouts/_stylesheets (0.4ms)
+Rendered layouts/_javascripts (0.9ms)
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM `users` WHERE (last_request_at > '2013-02-10 02:58:47') [0m
+Completed in 10699ms (View: 70, DB: 86) | 200 OK [http://localhost/surveys/6/initiate]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2013-02-10 08:38:47) [GET]
+
+ActionController::RoutingError (No route matches "/prototype.js" with {:method=>:get}):
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/hariharanganapathiraman/.rvm/rubies/ruby-1.8.7-p371/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)

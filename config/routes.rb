@@ -49,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :surveys, :member => {:initiate => :get}
   map.resources :survey_results
 
-  map.resources :survey_breakpoints, :collection => {:handle => :get}
+  map.resources :survey_breakpoints, :collection => {:handle => :post}
   map.resources :survey_breakpoint_results
 
   map.connect ':controller/:action/:id'
