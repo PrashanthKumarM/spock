@@ -8,8 +8,7 @@ class SurveyBreakpointsController < ApplicationController
 
 		initiate_survey_variables
 		create_survey_result unless @params[:digits].nil?
-		send_twiml_response unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
-		render :text => "<Response><Say> Thank You </Say></Response>"
+		send_twiml_response #unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
 	end
 
 	protected
