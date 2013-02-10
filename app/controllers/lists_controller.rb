@@ -8,6 +8,7 @@ class ListsController < ApplicationController
 
 	def show
 		@list = List.find(params[:id])
+		@surveys = current_user.surveys.all
 	end
 
 	def create

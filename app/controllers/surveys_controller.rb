@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
 
 	require 'twilio-ruby'
 	before_filter :build_user, :only => [ :index, :new, :show, :create ]
+	NUMBERS = ['+1 567-623-8300', '+1 832-564-3133']
 
 	def index
 		@surveys = @user.surveys
@@ -36,8 +37,9 @@ class SurveysController < ApplicationController
 		@breaks = @survey.survey_breakpoints.all
 	end
 
-	def initiate_survey
+	def initiate_list_survey
 		@list = User.find(:all, :conditions => { :list_number => params[:list_number]})
+		call_lists
 	end
 
 	def initiate
@@ -47,6 +49,17 @@ class SurveysController < ApplicationController
 		initiate_survey_variables
 		save_survey_result
 		make_the_call
+	end
+
+	def call_lists
+		@list.each_with_index do |l, i|
+			@contact = l
+			params.merge(:phone => @contact.phone)
+			initiate_survey_variables
+			save_survey_result
+			make_the_call NUMBERS[0] if i.even?
+			make_the_call NUMBERS[1] if i.odd?
+		end
 	end
 	
 	private
@@ -61,7 +74,7 @@ class SurveysController < ApplicationController
 			@survey_result.save
 		end
 
-		def make_the_call
+		def make_the_call number
 			account_sid = 'ACc64d9ba6b024d108b9efd56d905b1c7f'
 			auth_token = '1561a5d67c1c765ccbc0b5a76fc310e3'
 			first_survey_breakpoint = @survey.survey_breakpoints.first
@@ -69,7 +82,7 @@ class SurveysController < ApplicationController
 
 			@client = Twilio::REST::Client.new account_sid, auth_token
 			@call = @client.account.calls.create ({
-	  	:from => '+1 567-623-8300',
+	  	:from => number,
 	  	:to => @contact.phone,
 	  	:url => "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
 	  	# :url => "http://ec2-23-23-179-188.compute-1.amazonaws.com/survey_breakpoints/handle?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"

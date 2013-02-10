@@ -2,11 +2,13 @@
 <%= l.label :name %>
 <%= l.text_field :name %>
 <%= l.hidden_field :user_id, :value => current_user.id %>
+<table class="table">
+	<tr><th>#</th><th>Contact</th></tr>
 <% @contacts.each do |contact| %>
-<div class="contact_list">
-	<%= check_box_tag ('ids[]', contact.id) %>
-	<%= content_tag(:p, contact.name) %>
-</div>
+	<tr><td>
+	<%= check_box_tag ('ids[]', contact.id) %></td>
+	<td><%= content_tag(:p, contact.name) %></td></tr>
 <% end %>
-<%= l.submit "Create" %>
+</table>
+<%= l.submit "Create", :class => "btn btn-inverse" %>
 <% end %>

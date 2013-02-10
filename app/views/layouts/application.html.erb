@@ -12,10 +12,9 @@
 <div class="nav-collapse">  
 <ul class="nav nav_here">  
 <% if !current_user %>
-  <li class="active"><%= link_to "Register", new_account_path %></li>
+  <li><%= link_to "Register", new_account_path %></li>
   <li><%= link_to "Log In", new_user_session_path %></li>
 <% else %>
-  <li class="active"><%= link_to "My Account", account_path %></li>
   <li><%= link_to "Surveys", surveys_path %></li>
   <li><%= link_to "Contacts", contacts_path %></li>
   <li><%= link_to "Lists", lists_path %></li>

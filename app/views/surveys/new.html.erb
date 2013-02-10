@@ -67,7 +67,7 @@ jQuery('.remove').live('click', function(){
 });
 
 <% end %>
-<h1>Survey</h1><br/>
+<h1>Create Survey</h1><br/>
 <% form_for @survey, :html => {:class=>'form-horizontal'} do |s| %>
 	<div class="control-group">
 		<%= s.label :name, "Survey Name", :class=>"control-label" %>
@@ -83,19 +83,19 @@ jQuery('.remove').live('click', function(){
 		<div class="row-fluid">
 			<div class="entry">
 				<div class="span2">
-					<h4 class="key"><b>Key</b></h4>
+					<span class="key">Key</span>
 				</div>
 				<div class="span7">
-					<h4><b>Play Message</b></h4>
+					<span>Play Message</span>
 				</div>
 				<div class="span3">
 					<h4><b>Conditional Jump-to</b></h4>
 				</div>
 			</div>
 		</div>
-			<a id="another"><b>[</b>+<b>]</b>Add another option</a>
+			<a id="another"><b>[</b>+<b>]</b> &nbsp;Add a choice</a>
 	</div>
 </div>
 	<a id="another_question">Add a Question</a>
-	<%= s.submit "Create" %>
+	<%= s.submit "Save", :class => "btn btn-inverse new_button save" %>
 	<% end %>

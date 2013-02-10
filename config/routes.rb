@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :lists
   map.resources :contacts
 
-  map.resources :surveys, :member => {:initiate => :any}, :collection => {:report => :any}
+  map.resources :surveys, :member => {:initiate => :any, :initiate_list_survey => :any}, :collection => {:report => :any}
   map.resources :survey_results
 
   map.resources :survey_breakpoints, :collection => {:handle => :any}
