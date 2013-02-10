@@ -32,6 +32,16 @@ class SurveyBreakpointsController < ApplicationController
 			render :text => gen_xml(@path, @survey_breakpoint.twiml, true)
 		end
 
+		# def send_announce
+		# 	render :text => gen_xml_say(@survey_breakpoint.twiml)
+		# end
+
+		# def gen_xml_say(twiml)
+		# 	Twilio::TwiML::Response.new do |r|
+		# 			f.Say twiml
+		# 	end.text
+		# end
+
 		def gen_xml (path1, twiml, voice=true)
 			numdigits = voice ? 1 : 9
 			Twilio::TwiML::Response.new do |r|
