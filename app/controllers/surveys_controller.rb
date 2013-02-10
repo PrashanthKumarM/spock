@@ -43,7 +43,7 @@ class SurveysController < ApplicationController
 	end
 
 	def initiate
-		params[:phone] = '+919884837794'
+		# params[:phone] = '+919884837794'
 		@params = params
 
 		initiate_survey_variables
@@ -85,6 +85,7 @@ class SurveysController < ApplicationController
 	  	:to => @contact.phone,
 	  	:url => "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
   		})
+
 		end
 
 		def parse_xml question, options
