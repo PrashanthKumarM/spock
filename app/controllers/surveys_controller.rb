@@ -48,7 +48,7 @@ class SurveysController < ApplicationController
 
 		initiate_survey_variables
 		save_survey_result
-		make_the_call
+		make_the_call NUMBERS[0]
 	end
 
 	def call_lists
