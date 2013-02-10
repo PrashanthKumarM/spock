@@ -8,8 +8,11 @@ class SurveyBreakpointsController < ApplicationController
 
 		initiate_survey_variables
 		create_survey_result unless @params[:digits].nil?
-		send_twiml_response unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
-		render :text => Twilio::TwiML::Response.new do |r| r.Say "Thank You" end
+		unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
+			send_twiml_response 
+		else
+			render :text => Twilio::TwiML::Response.new do |r| r.Say "Thank You" end
+		end
 	end
 
 	protected
