@@ -8,7 +8,8 @@ class SurveyBreakpointsController < ApplicationController
 
 		initiate_survey_variables
 		create_survey_result unless @params[:digits].nil?
-		send_twiml_response #unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
+		send_twiml_response unless @survey_breakpoint.next_survey_breakpoint_id.nil?	
+		render :text => Twilio::TwiML::Response.new do |r| r.Say "Thank You" end
 	end
 
 	protected
@@ -31,16 +32,6 @@ class SurveyBreakpointsController < ApplicationController
 			@path = "#{handle_survey_breakpoints_path}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{@next_survey_breakpoint.id}" if !@next_survey_breakpoint.nil?
 			render :text => gen_xml(@path, @survey_breakpoint.twiml, true)
 		end
-
-		# def send_announce
-		# 	render :text => gen_xml_say(@survey_breakpoint.twiml)
-		# end
-
-		# def gen_xml_say(twiml)
-		# 	Twilio::TwiML::Response.new do |r|
-		# 			f.Say twiml
-		# 	end.text
-		# end
 
 		def gen_xml (path1, twiml, voice=true)
 			numdigits = voice ? 1 : 9
