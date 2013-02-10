@@ -1,15 +1,15 @@
-<ul class="ui-form">	
-	<li>
-		<%= label(:contact, :name, "Name" )%>
-		<%= text_field(:contact, :name, :class => "text required" ) %>
-	</li>
-	<li>
-		<%= label(:contact, :phone, "Phone") %> 
-		<%= text_field(:contact, :phone, :id => "email_primary" ) %> 
+<table class="table">	
+	<tr>
+		<td><%= label(:contact, :name, "Name" )%></td>
+		<td><%= text_field(:contact, :name, :class => "text required" ) %></td>
+	</tr>
+	<tr>
+		<td><%= label(:contact, :phone, "Phone") %> </td>
+		<td><%= text_field(:contact, :phone, :id => "email_primary" ) %> </td>
 		<%= hidden_field(:contact, :user_id, :value => current_user.id) %>
-	</li>	
-	<li>
-		<%= label(:contact, :email, "Email") %> 
-		<%= text_field(:contact, :email, :id => "email_primary" ) %> 
-	</li>	
-</ul>
+	</tr>	
+	<tr>
+		<td><%= label(:contact, :email, "Email") %> </td>
+		<td><%= text_field(:contact, :email, :id => "email_primary" ) %></td> 
+	</tr>	
+</table>

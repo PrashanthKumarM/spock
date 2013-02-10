@@ -3,6 +3,6 @@
 
 <% form_for @contact, :url => { :controller => "contacts", :action => "create" } do |f| %>
 	  <%= render :partial => "contact_form", :locals => { :f => f, :type => "new" } %>
-	  <%= f.submit "Save", :class => "uiButton" %> 
-	  <%= link_to "Cancel", {:controller =>'contacts', :action => 'index'}, :class => "uiButton" %>
+	  <%= f.submit "Save", :class => "btn btn-inverse" %> 
+	  <%= link_to "Cancel", {:controller =>'contacts', :action => 'index'}, :class => "btn" %>
 <% end -%>

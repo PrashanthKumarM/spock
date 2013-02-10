@@ -1,8 +1,7 @@
-<h1>Contacts#edit</h1>
-<p>Find me in app/views/contacts/edit.html.erb</p>
+<h1>Edit Contacts</h1>
 
-<% form_for @contact, :url => { :controller => "contacts", :action => "update" } do |f| %>
+<% form_for @contact, :url => { :controller => "contacts", :action => "update" }, :class => "form-horizontal" do |f| %>
 	  <%= render :partial => "contact_form", :locals => { :f => f, :type => "edit" } %>
-	  <%= f.submit "Save", :class => "uiButton" %> 
-	  <%= link_to "Cancel", {:controller =>'contacts', :action => 'index'} , :class => "uiButton" %>
+	  <%= f.submit "Save", :class => "btn btn-inverse" %> 
+	  <%= link_to "Cancel", {:controller =>'contacts', :action => 'index'} , :class => "btn" %>
 <% end -%>

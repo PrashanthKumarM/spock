@@ -14,7 +14,7 @@ input[type="text"]{
 .question_box{
 	min-height: 300px;
 	width: 700px;
-	border: 1px #000 solid;
+	border: 1px #ccc solid;
 	border-radius: 5px;
 	overflow-x: hidden;
 	overflow-y: scroll; 
@@ -28,6 +28,10 @@ a{
 
 .question_twiml{
 	width: 100%;
+}
+
+.save{
+	margin-right: 190px;
 }
 
 .remove{
@@ -46,6 +50,10 @@ select{
 div.span7 input[type="text"]{
 		width: 90% !important;
 }
+
+	div.span3{
+		display: none !important;
+	}
 
 .entry{
 	overflow: hidden;
@@ -106,12 +114,11 @@ div.span7 input[type="text"]{
 }
 
 ul.nav_here li a{
-		height: 45% !important;
+		height: 61% !important;
 		font-size: 18px !important;
 		font-weight: lighter;
-		background-color: #8e8e8e !important;
-		color: #000 !important;
-		padding-top: 23px !important;
+		padding: 23px 20px 0 20px !important;
+		border-right: 1px solid #ccc;
 }
 
 ul.nav_here li.active a{
@@ -119,13 +126,21 @@ ul.nav_here li.active a{
 }
 
 .nav_here{
-	float: none !important;
+	float: right !important;
 }
 
 .form-horizontal{
-	margin-left: 97px;
+	margin-left: 10px;
 }
 
 #survey_name{
-	width: 84%;
+	width: 75%;
+}
+
+.new_button{
+	float: right;
+}
+
+h2{
+	display: inline-block !important;
 }

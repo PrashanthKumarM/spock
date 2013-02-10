@@ -1,9 +1,9 @@
 <h2>Your Contacts</h2>
-
+<%= link_to "Create new", new_contact_path, :class=>"btn btn-primary new_button" %>
 <table class="table table-striped">
 	<tr><th>#</th><th>Contact Name</th><th>Phone</th><th>Email</th></tr>
 	<% @contacts.each do |list| %>
-	<tr><td><%= list.id %></td><td><%= list.name %></td><td><%= list.phone %></td><td><%= list.email %></td></tr>
+	<tr><td><%= list.id %></td><td><%= link_to list.name, edit_contact_path(list.id) %></td><td><%= list.phone %></td><td><%= list.email %></td></tr>
 	<% end %>
 </table>
 

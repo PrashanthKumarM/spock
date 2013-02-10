@@ -1,3 +1,9 @@
-<h1><%= @list.name %></h1>
-<%= select "Surveys", options_for_select @surveys.map{|x| [x.id, x.name]} %>
-<%= 
+<h1> List : <%=@list.name %></h1>
+
+<h4> Available Surveys </h4>
+<table class="table">
+	<tr><th>#</th><th>Survey name</th><th>Apply</th></tr>
+	<% @surveys.each do |survey| %>
+	<tr><td><%= survey.id %></td><td><%= survey.name %></td><td><%= link_to_remote "Apply", :url => initiate_list_survey_survey_path({:id => survey.id, :list_number => @list.id}) %></td></tr>
+	<% end %>
+</table> 

@@ -1,9 +1,9 @@
 <h1><%= @survey.name %></h1>
 
 <table class="table table-striped">
-	<tr><th>#</th><th>Call Text</th><th>Survey id</th><th>Next Breakpoint</th></tr>
+	<tr><th>#</th><th>Call Text</th><th>Survey id</th></tr>
 	<% @breaks.each do |breaks| %>
-	<tr><td><%= breaks.id %></td><td><%= breaks.twiml %></td><td><%= breaks.survey_id %></td><td><%= breaks.next_survey_breakpoint_id %></td></tr>
+	<tr><td><%= breaks.id %></td><td><%= breaks.twiml %></td><td><%= breaks.survey_id %></td></tr>
 	<% end %>
 </table>
 

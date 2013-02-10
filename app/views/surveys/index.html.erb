@@ -1,9 +1,9 @@
 <h2>Your Surveys</h2>
-
+<%= link_to "Create new", new_survey_path, :class=>"btn btn-primary new_button" %>
 <table class="table table-striped">
-	<tr><th>#</th><th>Survey Name</th><th>Type</th></tr>
+	<tr><th>#</th><th>Survey Name</th><th>Survey Url</th><th>Type</th></tr>
 	<% @surveys.each do |survey| %>
-	<tr><td><%= survey.id %></td><td><%= link_to survey.name, survey_path(survey.id) %></td><td>Voice</td>
+	<tr><td><%= survey.id %></td><td><%= link_to survey.name, survey_path(survey.id) %></td><td><%= initiate_survey_url(survey.id) %></td><td>Voice</td>
 	<% end %>
 </table>
 

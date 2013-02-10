@@ -1,9 +1,9 @@
 <h2>Your Lists</h2>
-
+<%= link_to "Create new", new_list_path, :class=>"btn btn-primary new_button" %>
 <table class="table table-striped">
 	<tr><th>#</th><th>List Name</th><th>Contacts</th><th></th></tr>
 	<% @lists.each do |list| %>
-	<tr><td><%= list.id %></td><td><%= list.name %></td><td><%= list.contacts.count %></td>
+	<tr><td><%= list.id %></td><td><%= link_to list.name, list_path(list.id) %></td><td><%= list.contacts.count %></td>
 		<td><%= link_to "Delete", list_path(list.id), :method => :delete, :confirm => 'Are you sure you want to delete the list?' %></td></tr>
 	<% end %>
 </table>
