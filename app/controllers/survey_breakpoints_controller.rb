@@ -28,7 +28,7 @@ class SurveyBreakpointsController < ApplicationController
 		def send_twiml_response 
 			@next_survey_breakpoint = @survey_breakpoint.next_survey_breakpoint
 			@path = "#{handle_survey_breakpoints_path}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{@next_survey_breakpoint.id}" if !@next_survey_breakpoint.nil?
-			render :xml => gen_xml(@path, @survey_breakpoint.twiml, true)
+			render :text => gen_xml(@path, @survey_breakpoint.twiml, true)
 		end
 
 		def gen_xml (path1, twiml, voice=true)
