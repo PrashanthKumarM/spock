@@ -6,6 +6,10 @@ class ListsController < ApplicationController
 		@contacts = Contact.find(:all, :conditions => { :user_id => current_user.id })
 	end
 
+	def show
+		@list = List.find(params[:id])
+	end
+
 	def create
 		@list = List.new(params[:list])
 		@contacts = Contact.find(:all, :conditions => { :id => params[:ids] })
