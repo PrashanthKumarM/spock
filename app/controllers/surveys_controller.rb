@@ -12,6 +12,10 @@ class SurveysController < ApplicationController
 		@survey = @user.surveys.new
 	end
 
+	def report
+		@survey_results = current_user.survey_results.all
+	end
+
 	def create
 		@survey = @user.surveys.create(params[:survey])
 		@prev = nil
@@ -29,7 +33,8 @@ class SurveysController < ApplicationController
 	end
 
 	def show
-		@survey = @user.surveys.find_by_name(params[:id])
+		@survey = @user.surveys.find(params[:id])
+		@breaks = @survey.survey_breakpoints.all
 	end
 
 	def initiate_survey
@@ -66,8 +71,7 @@ class SurveysController < ApplicationController
 			@call = @client.account.calls.create ({
 	  	:from => '+1 567-623-8300',
 	  	:to => @contact.phone,
-	  	:url => "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
-  		})
+			:url => "http://ec2-23-23-179-188.compute-1.amazonaws.com/survey_breakpoints/3/handle?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"})
 		end
 
 		def parse_xml question, options

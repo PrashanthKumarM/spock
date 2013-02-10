@@ -1,1 +1,3 @@
 <h1><%= @list.name %></h1>
+<%= select "Surveys", options_for_select @surveys.map{|x| [x.id, x.name]} %>
+<%= 

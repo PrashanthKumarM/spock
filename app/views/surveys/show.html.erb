@@ -1,0 +1,12 @@
+<h1><%= @survey.name %></h1>
+
+<table class="table table-striped">
+	<tr><th>#</th><th>Call Text</th><th>Survey id</th><th>Next Breakpoint</th></tr>
+	<% @breaks.each do |breaks| %>
+	<tr><td><%= breaks.id %></td><td><%= breaks.twiml %></td><td><%= breaks.survey_id %></td><td><%= breaks.next_survey_breakpoint_id %></td></tr>
+	<% end %>
+</table>
+
+	<% if @survey.nil? %>
+	<div class="no-surveys"> You do not have any survey by this type</div>
+	<% end %>

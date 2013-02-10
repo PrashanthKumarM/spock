@@ -1,0 +1,12 @@
+<h2>Your Survey Results</h2>
+
+<table class="table table-striped">
+	<tr><th>#</th><th>Contact id</th><th>User id</th><th>Survey id</th></tr>
+	<% @survey_results.each do |survey| %>
+	<tr><td><%= survey.id %></td><td><%= survey.contact_id %></td><td><%= survey.user_id %></td><td><%= survey.survey_id %></td>
+	<% end %>
+</table>
+
+	<% if @survey_results.empty? %>
+	<div class="no-surveys"> You do not have any survey results </div>
+	<% end %>
