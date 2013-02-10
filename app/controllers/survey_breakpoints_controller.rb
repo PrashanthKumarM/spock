@@ -14,7 +14,8 @@ class SurveyBreakpointsController < ApplicationController
 	protected
 
 		def initiate_survey_variables
-			@survey = current_user.surveys.find @params[:current_survey]
+			puts "No user"
+			@survey = Survey.find @params[:current_survey]
 			@survey_result = @survey.survey_results.find @params[:current_survey_result]
 			@survey_breakpoint = @survey.survey_breakpoints.find @params[:current_survey_breakpoint]
 		end
