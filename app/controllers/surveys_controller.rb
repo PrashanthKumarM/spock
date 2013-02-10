@@ -43,7 +43,7 @@ class SurveysController < ApplicationController
 	end
 
 	def initiate
-		params[:phone] = '+919941751339'
+		params[:phone] = '+919884837794'
 		@params = params
 
 		initiate_survey_variables
@@ -66,7 +66,7 @@ class SurveysController < ApplicationController
 
 		def initiate_survey_variables
 			@survey = current_user.surveys.find params[:id]
-			@contact = current_user.contacts.find_by_phone params[:phone]
+			@contact = current_user.contacts.find_or_create_by_phone :phone => params[:phone]
 		end
 
 		def save_survey_result
@@ -79,19 +79,16 @@ class SurveysController < ApplicationController
 			auth_token = '1561a5d67c1c765ccbc0b5a76fc310e3'
 			first_survey_breakpoint = @survey.survey_breakpoints.first
 
-
 			@client = Twilio::REST::Client.new account_sid, auth_token
 			@call = @client.account.calls.create ({
 	  	:from => number,
 	  	:to => @contact.phone,
 	  	:url => "#{handle_survey_breakpoints_url}?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
-	  	# :url => "http://ec2-23-23-179-188.compute-1.amazonaws.com/survey_breakpoints/handle?current_survey=#{@survey.id}&current_survey_result=#{@survey_result.id}&current_survey_breakpoint=#{first_survey_breakpoint.id}"
   		})
-  		# p @call
 		end
 
 		def parse_xml question, options
-			if !options.nil?
+			unless options.nil?
 				options.each do |k, v|
 					question<<". #{v[:input_text]}"
 				end
