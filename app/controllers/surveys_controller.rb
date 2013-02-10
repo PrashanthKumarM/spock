@@ -41,8 +41,8 @@ class SurveysController < ApplicationController
 	end
 
 	def initiate
-		# params[:phone] = '+919884837794'
-		@params|| = params
+		params[:phone] = '+919884837794'
+		@params = params
 
 		initiate_survey_variables
 		save_survey_result
