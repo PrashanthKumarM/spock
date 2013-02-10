@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
 
-	# require 'twilio-ruby'
+	require 'twilio-ruby'
 	before_filter :require_user
 	before_filter :build_user, :only => [ :index, :new, :show, :create ]
 
@@ -71,8 +71,10 @@ class SurveysController < ApplicationController
 		end
 
 		def parse_xml question, options
-			options.each do |k, v|
-				question<<". #{v[:input_text]}"
+			if !options.nil?
+				options.each do |k, v|
+					question<<". #{v[:input_text]}"
+				end
 			end
 			question
 		end
